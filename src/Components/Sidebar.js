@@ -16,85 +16,45 @@ const Sidebar = ({ userByHobby, isSubmitted, onClickFilter }) => {
     );
   };
 
-  // const handleFilter = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     if (isSubmitted === true) {
-  //       console.log("response submitted");
-  //     } else {
-  //       const formData = {}; // Create an empty object to hold form data
-
-  //       // Add selected hobbies to the form data
-  //       if (selectedHobbies.length > 0) {
-  //         formData.hobbies = selectedHobbies;
-  //       }
-
-  //       // Add selected state to the form data
-  //       if (selectedState) {
-  //         formData.state = selectedState;
-  //       }
-
-  //       if (selectedCity) {
-  //         formData.city = selectedCity;
-  //       }
-
-  //       if (pinCode) {
-  //         formData.pinCode = pinCode;
-  //       }
-
-  //       const jsonData = JSON.stringify(formData);
-  //       console.log(jsonData, "jsonData");
-
-  //       const response = await axios.post(
-  //         "http://localhost:5000/api/users/getUserByHabbit",
-  //         jsonData,
-  //         {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         }
-  //       );
-
-  //       setSelectedState(response.data);
-  //       setHobbyUser(response.data);
-  //       userByHobby(response.data);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching users:", error);
-  //   }
-  // };
-
   const handleFilter = async (e) => {
     e.preventDefault();
     try {
       if (isSubmitted === true) {
         console.log("response submitted");
       } else {
-        const params = {};
+        const formData = {}; // Create an empty object to hold form data
 
-        // Add selected hobbies to the query params
+        // Add selected hobbies to the form data
         if (selectedHobbies.length > 0) {
-          params.hobbies = selectedHobbies.join(",");
+          formData.hobbies = selectedHobbies;
         }
 
-        // Add selected state to the query params
+        // Add selected state to the form data
         if (selectedState) {
-          params.state = selectedState;
+          formData.state = selectedState;
         }
+
         if (selectedCity) {
-          console.log("selectedCity", selectedCity);
-          params.city = selectedCity;
+          formData.city = selectedCity;
         }
+
         if (pinCode) {
-          params.pinCode = pinCode;
+          formData.pinCode = pinCode;
         }
-        // Make the GET request with the constructed query params
-        const response = await axios.get(
+
+        const jsonData = JSON.stringify(formData);
+        console.log(jsonData, typeof jsonData, "jsonData");
+
+        const response = await axios.post(
           "http://localhost:5000/api/users/getUserByHabbit",
+          jsonData,
           {
-            params: params,
+            headers: {
+              "Content-Type": "application/json",
+            },
           }
         );
+
         setSelectedState(response.data);
         setHobbyUser(response.data);
         userByHobby(response.data);
@@ -103,6 +63,46 @@ const Sidebar = ({ userByHobby, isSubmitted, onClickFilter }) => {
       console.error("Error fetching users:", error);
     }
   };
+
+  // const handleFilter = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     if (isSubmitted === true) {
+  //       console.log("response submitted");
+  //     } else {
+  //       const params = {};
+
+  //       // Add selected hobbies to the query params
+  //       if (selectedHobbies.length > 0) {
+  //         params.hobbies = selectedHobbies.join(",");
+  //       }
+
+  //       // Add selected state to the query params
+  //       if (selectedState) {
+  //         params.state = selectedState;
+  //       }
+  //       if (selectedCity) {
+  //         console.log("selectedCity", selectedCity);
+  //         params.city = selectedCity;
+  //       }
+  //       if (pinCode) {
+  //         params.pinCode = pinCode;
+  //       }
+  //       // Make the GET request with the constructed query params
+  //       const response = await axios.get(
+  //         "http://localhost:5000/api/users/getUserByHabbit",
+  //         {
+  //           params: params,
+  //         }
+  //       );
+  //       setSelectedState(response.data);
+  //       setHobbyUser(response.data);
+  //       userByHobby(response.data);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching users:", error);
+  //   }
+  // };
 
   const handleSelectChange = (event) => {
     setSelectedState(event.target.value);
