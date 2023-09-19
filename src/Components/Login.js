@@ -218,7 +218,7 @@ const Login = () => {
   // };
   return (
     <>
-      <Navbar userName={dataName} logout={logout} />
+      {/* <Navbar userName={dataName} logout={logout} /> */}
       <div className="w-3/4 p-6 justify-center mx-14 my-14 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
         <div className="border-s-violet-600  justify-center">
           <div className="text-xl text-center bottom-16 border-solid mb-10">

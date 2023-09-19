@@ -541,18 +541,6 @@ const Signup = () => {
         console.error("Error message:", error.message);
       }
     }
-
-    // try {
-    //   const response = await axios.post(
-    //     "http://localhost:5000/api/users/createUser",
-    //     data // Send the form data to the backend
-    //   );
-    //   console.log("Response:", response);
-
-    //   console.log("User created:", response.data);
-    // } catch (error) {
-    //   console.error("Error creating user:", error);
-    // }
   };
 
   return (

@@ -11,9 +11,9 @@ import UserCard from "./Components/UserCard";
 function App() {
   return (
     <>
-      {/* <Navbar userName={"Welcome,User"} /> */}
-      <ImageApi />
       <BrowserRouter>
+        <Navbar />
+        <ImageApi />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
